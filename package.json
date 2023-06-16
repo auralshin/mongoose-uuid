@@ -1,5 +1,5 @@
 {
-  "name": "@auralshin/mongoose-uuid-ts",
+  "name": "mongoose-uuid-ts",
   "version": "1.0.2",
   "description": "uuid for mongoose",
   "main": "index.js",
@@ -7,9 +7,6 @@
     "start": "node index.js",
     "build": "tsc",
     "test": "jest"
-  },
-  "publishConfig": {
-    "@auralshin:registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
