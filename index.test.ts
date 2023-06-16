@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 describe("UUIDSchemaType", () => {
   beforeAll(() => {
     // Connect to the MongoDB database using Mongoose
-    mongoose.connect("mongodb://localhost/mydatabase");
+    mongoose.connect("mongodb://127.0.0.1:27017/mydatabase");
   });
 
   afterAll(async () => {
