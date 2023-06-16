@@ -5,7 +5,7 @@ import mongoose, {
   SchemaOptions,
   AnyObject,
 } from "mongoose";
-import { v4 as uuidv4, validate as uuidValidate } from "uuid";
+import { validate as uuidValidate } from "uuid";
 import { Buffer } from "buffer";
 
 class UUIDSchemaType extends Schema.Types.UUID {
