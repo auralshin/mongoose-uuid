@@ -44,8 +44,8 @@ class UUIDSchemaType extends Schema.Types.UUID {
   }
 
   // Getter to convert Buffer to UUID string
-  get(fn: Function): this {
-    return fn(this);
+  get(fn: Function): any {
+    return fn(this.toString());
   }
 
   // Check if the value is a Buffer

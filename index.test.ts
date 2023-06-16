@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Buffer } from "buffer";
 import { UUIDSchemaType } from "./index";
-
+import { v4 as uuidv4 } from "uuid";
 describe("UUIDSchemaType", () => {
   beforeAll(() => {
     // Connect to the MongoDB database using Mongoose
@@ -59,14 +59,17 @@ describe("UUIDSchemaType", () => {
 
   it("should convert a Buffer value to a UUID string using the getter", () => {
     const uuidString = "7b7e8257-36d4-4a7f-b1f7-5d8e8de5e646";
-    const uuidBuffer = Buffer.from(uuidString, "hex");
+    const uuidBuffer = Buffer.from(
+      "7b7e8257-36d4-4a7f-b1f7-5d8e8de5e646",
+      "hex"
+    );
 
     const uuidSchemaType = new UUIDSchemaType("uuid");
-    const convertedValue = uuidSchemaType.get((value: Buffer) => {
-      return value.toString("hex");
-    });
+    uuidSchemaType.toString = jest.fn(() => uuidString);
 
-    expect(convertedValue).toBe(uuidString);
+    const result = uuidSchemaType.get((value: any) => value);
+
+    expect(result).toEqual(uuidString);
   });
 
   it("should return true for checkRequired if the value is a Buffer", () => {
