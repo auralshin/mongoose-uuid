@@ -1,74 +1,108 @@
-# mongoose-uuid-ts
+# Mongoose UUID Schema Type
 
-This package provides a way to work with UUIDs (Universally Unique Identifiers) in Mongoose, a MongoDB object modeling tool. It extends Mongoose's built-in types to include a UUID type, which can be used to define UUID fields in your Mongoose schemas.
+This is a custom schema type for Mongoose that allows storing and manipulating UUID (Universally Unique Identifier) values as buffers in MongoDB. It extends the existing `UUID` schema type provided by Mongoose.
 
 ## Installation
 
+To use the `UUIDSchemaType`, you need to have Mongoose and the `uuid` package installed in your project.
+
 ```bash
-npm install mongoose-uuid-ts
+npm install mongoose uuid
 ```
 
 ## Usage
 
-To use the UUID type in a Mongoose schema:
+1. Import the required dependencies:
 
-```typescript
-import mongoose from 'mongoose';
-import { mongooseUuid } from 'mongoose-uuid-ts';
+```javascript
+import mongoose from "mongoose";
+import { v4 as uuidv4, validate as uuidValidate } from "uuid";
+import { Buffer } from "buffer";
+```
 
+2. Define the `UUIDSchemaType` class, extending the `UUID` schema type provided by Mongoose:
+
+```javascript
+class UUIDSchemaType extends mongoose.Schema.Types.UUID {
+  // Custom implementation of the UUID schema type
+  // ...
+}
+```
+
+3. Implement the necessary methods (`cast`, `castForQuery`, `get`, `checkRequired`) in the `UUIDSchemaType` class according to your requirements. These methods handle the casting, querying, getting, and validation of UUID values.
+
+4. Register the `UUIDSchemaType` with Mongoose:
+
+```javascript
+mongoose.Schema.Types.UUID = UUIDSchemaType;
+```
+
+5. Now, you can use the `UUID` schema type in your Mongoose schemas:
+
+```javascript
+const MySchema = new mongoose.Schema({
+  uuidField: {
+    type: mongoose.Schema.Types.UUID,
+    required: true,
+  },
+  // ...
+});
+```
+
+## Example
+
+Here's an example demonstrating the usage of the `UUIDSchemaType`:
+
+```javascript
+// Import necessary dependencies and define UUIDSchemaType
+
+// ...
+
+// Add UUID to Mongoose Schema types
+mongoose.Schema.Types.UUID = UUIDSchemaType;
+
+// Create a sample schema
 const UserSchema = new mongoose.Schema({
-  _id: {
-    type: mongooseUuid,
-    required: true
+  id: {
+    type: mongoose.Schema.Types.UUID,
+    default: () => uuidv4(),
   },
   name: String,
 });
+
+// Create a model using the schema
+const User = mongoose.model("User", UserSchema);
+
+// Create a new user
+const newUser = new User({
+  name: "John Doe",
+});
+
+// Save the user to the database
+newUser.save()
+  .then((user) => {
+    console.log("User created:", user);
+  })
+  .catch((error) => {
+    console.error("Error creating user:", error);
+  });
 ```
-
-In this example, the `_id` field of the `User` schema is defined to be of type UUID.
-
-## API
-
-The `mongoose-uuid-ts` package exports the following:
-
-- `getter`: Function that gets the string representation of a UUID from a binary buffer.
-- `checkRequired`: Function that checks if a given value is a buffer.
-- `cast`: Function that casts a given value to a UUID, either from a buffer or a string.
-- `castForQuery`: Function that casts a given value for a query. Used internally by Mongoose.
-
-## TypeScript Support
-
-This package includes TypeScript definitions for all exported functions.
-
-## Testing
-
-To run the tests for this package:
-
-```bash
-npm test
-```
-
-This will run the test suite using Jest.
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request on GitHub.
 
 ## License
 
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
+This code is provided under the [MIT License](https://opensource.org/licenses/MIT).
 
+## Contributing
 
-// Usage
-const UserSchema = new Schema({
-  userId: {
-    type: UUIDSchemaType,
-    required: true,
-  },
-});
+Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or submit a pull request on GitHub.
 
-const user = new User({
-  userId: uuidv4(),
-});
+## Credits
 
-user.save();
+This custom schema type is developed and maintained by [Your Name](https://github.com/your-github-username).
+
+## Resources
+
+- [Mongoose Documentation](https://mongoosejs.com/)
+- [UUID npm package](https://www.npmjs.com/package/uuid)
+
+Feel free to modify and enhance the README as per your specific requirements and preferences.
