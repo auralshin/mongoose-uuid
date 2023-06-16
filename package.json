@@ -1,6 +1,6 @@
 {
   "name": "mongoose-uuid-ts",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "uuid for mongoose",
   "main": "index.js",
   "scripts": {
