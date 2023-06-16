@@ -1,18 +1,6 @@
-import mongoose from "mongoose";
 import { Buffer } from "buffer";
 import { UUIDSchemaType } from "./index";
-import { v4 as uuidv4 } from "uuid";
 describe("UUIDSchemaType", () => {
-  beforeAll(() => {
-    // Connect to the MongoDB database using Mongoose
-    mongoose.connect("mongodb://127.0.0.1:27017/mydatabase");
-  });
-
-  afterAll(async () => {
-    // Disconnect from the MongoDB database
-    await mongoose.disconnect();
-  });
-
   it("should cast a valid UUID string to Buffer", () => {
     const uuidString = "7b7e8257-36d4-4a7f-b1f7-5d8e8de5e646";
     const uuidBuffer = Buffer.from(uuidString, "hex");

@@ -26,12 +26,15 @@
   "homepage": "https://github.com/auralshin/mongoose-uuid#readme",
   "dependencies": {
     "bson": "^5.3.0",
+    "merge": "^2.1.1",
+    "mongodb": "^5.6.0",
     "mongoose": "^7.3.0",
     "util": "^0.12.5",
     "uuid": "^9.0.0",
     "uuid-parse": "^1.1.0"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^4.1.7",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",
     "@types/uuid": "^9.0.2",
