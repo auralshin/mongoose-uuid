@@ -98,7 +98,7 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 
 ## Credits
 
-This custom schema type is developed and maintained by [Your Name](https://github.com/your-github-username).
+This custom schema type is developed and maintained by [Anshul Rai](https://github.com/auralshin).
 
 ## Resources
 
